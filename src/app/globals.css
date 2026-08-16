@@ -1,0 +1,122 @@
+@import "tailwindcss";
+
+@layer utilities {
+  .font-handwritten {
+    font-family: var(--font-handwritten), "Caveat", "Patrick Hand", cursive, sans-serif;
+  }
+  
+  .font-sans-ui {
+    font-family: var(--font-sans), "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+
+  /* Canvas Layout Paper Backgrounds */
+  .bg-graph-paper {
+    background-color: #FAF9F5;
+    background-image: 
+      linear-gradient(to right, rgba(203, 213, 225, 0.4) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(203, 213, 225, 0.4) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+
+  .bg-whiteboard {
+    background-color: #FAFAFC;
+    background-image: radial-gradient(rgba(203, 213, 225, 0.3) 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+
+  .bg-chalkboard {
+    background-color: #1E293B;
+    background-image: 
+      radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+    background-size: 24px 24px;
+    color: #F8FAFC;
+  }
+
+  .bg-blueprint {
+    background-color: #1E3A8A;
+    background-image: 
+      linear-gradient(to right, rgba(255, 255, 255, 0.15) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.15) 1px, transparent 1px);
+    background-size: 20px 20px;
+    color: #FFFFFF;
+  }
+
+  .bg-dot-grid {
+    background-image: radial-gradient(#CBD5E1 1.2px, transparent 1.2px);
+    background-size: 18px 18px;
+  }
+}
+
+:root {
+  --background: #FAF9F5;
+  --foreground: #0F172A;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), system-ui, sans-serif;
+  overflow-x: hidden;
+}
+
+/* Custom hand-drawn outline shadow */
+.sketch-card {
+  border: 1.5px solid #0F172A;
+  box-shadow: 2.5px 3px 0px #0F172A;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.sketch-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 4px 5px 0px #0F172A;
+}
+
+/* Smooth animated underline */
+.hand-drawn-underline {
+  position: relative;
+  display: inline-block;
+}
+
+.hand-drawn-underline::after {
+  content: "";
+  position: absolute;
+  left: -2px;
+  bottom: -4px;
+  width: 104%;
+  height: 8px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 20' preserveAspectRatio='none'%3E%3Cpath d='M3,12 Q60,3 120,13 T197,8' fill='none' stroke='%230F172A' stroke-width='4.5' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+/* Pulse animation for active speaker / drawing indicator */
+@keyframes drawStroke {
+  0% {
+    stroke-dashoffset: 1000;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+.animate-draw {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: drawStroke 1.8s ease-in-out forwards;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #CBD5E1;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94A3B8;
+}
